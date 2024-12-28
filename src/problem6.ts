@@ -22,16 +22,16 @@ A discount that applies only if the price is greater than 500.
 
 */
 
-interface Book{
+interface Books{
     title: string,
     author: string,
     price: number
 }
 
 
-type DiscountCalculator =(book: Book)=>number
+type DiscountCalculator =(book: Books)=>number
 
-function applyDiscount(book:Book, discountFn: DiscountCalculator):number{
+function applyDiscount(book:Books, discountFn: DiscountCalculator):number{
     return discountFn(book);
 }
 
@@ -43,8 +43,8 @@ const discountOver500: DiscountCalculator = (book) => {
     return book.price > 500 ? book.price - 100 : book.price;
 };
 
-const book1: Book = { title: "TypeScript Basics", author: "John Doe", price: 600 };
-const book2: Book = { title: "Learn JavaScript", author: "Jane Smith", price: 300 };
+const book1: Books = { title: "TypeScript Basics", author: "John Doe", price: 600 };
+const book2: Books = { title: "Learn JavaScript", author: "Jane Smith", price: 300 };
 
 console.log(
     `Book: ${book1.title}, Discounted Price: ${applyDiscount(book1, tenPercentDiscount)}`
