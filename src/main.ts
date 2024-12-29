@@ -27,15 +27,18 @@ runAfter1s(function(){
 })
 
 interface User{
+    id:number,
     firstName: string,
     lastName: string,
-    email?: string, //optional 
-    age:number
+    name: string,
+    email: string, 
+    age?:number,
+    address?:string
 }
 
 
 function isLegalCheck(user: User){
-    if(user.age>18){
+    if(user.age && user.age>18){
         return true;
     }
     else{
@@ -44,4 +47,18 @@ function isLegalCheck(user: User){
 }
 
 
+function updateUser(user: User, updateObj: Partial<User>){
+    return {...user, ...updateObj};
+}
+
+
+type CompleteUserPreview = Required<Pick<User, "id" | "name" | "email">> // Combined Pick and Required
+
+const userPreview: CompleteUserPreview = {
+    id: 1,
+    name: "Alice",
+    email: "alice@example.com",
+};
+
+console.log(userPreview);
 
